@@ -2,11 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const shell = require('shelljs');
-
 const app = express();
+
 app.use(cors());
-const upload = multer({
+
+const upload = multer.diskStorage({
     dest: './compiler/',
+    filename: function (req, file, cb) {
+        cb(null,file.originalname)
+    }
   });
 
   app.post('/upload', upload.array('file'), async (req, res) => {
@@ -15,9 +19,6 @@ const upload = multer({
       upload: true,
       files: req.files,
     });
-    // miou
-    //shell.chmod('+x','./exec.sh')
-    // shell.exec('./exec.sh')
   });
 
 app.get('/', (req, res)=>{
