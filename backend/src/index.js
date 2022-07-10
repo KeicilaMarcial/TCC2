@@ -3,17 +3,17 @@ const cors = require('cors');
 const multer = require('multer');
 const shell = require('shelljs');
 const app = express();
+const fs = require('fs');
+const path = require('path');
 
 app.use(cors());
 
-const upload = multer.diskStorage({
-    dest: './compiler/',
-    filename: function (req, file, cb) {
-        cb(null,file.originalname)
-    }
-  });
+const  upload = multer({storage: multer.diskStorage({
+    destination: function (req, file, callback) { callback(null, './compiler/');},
+    filename: function (req, file, callback) { callback(null, file.originalname);}})
+}).array('file',2);
 
-  app.post('/upload', upload.array('file'), async (req, res) => {
+  app.post('/upload', upload, async (req, res) => {
     console.log(`Files received: ${req.files.length}`);
     res.send({
       upload: true,
