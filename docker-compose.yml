@@ -1,0 +1,53 @@
+version: "3.5"
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    command: "yarn dev"
+    volumes:  
+      - "./backend:/app"
+      - ./compiler:/app/compiler
+    ports:
+      - "5001:5001"
+    networks:
+      - local
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    command: "yarn start"
+    ports:
+      - "3000:3000"
+    links:
+      - "backend"
+    volumes:
+      - ./frontend/compiler:/compiler  
+      - "./frontend:/app"
+    networks:
+      - local
+  compiler:
+    container_name: compiler
+    build:
+     context: ./compiler
+     dockerfile: Dockerfile_java
+    ports:
+      - "8080:8080"
+    command: sh -c "./exec.sh && sleep infinity"
+    links:
+      - "backend"
+    volumes:
+      - ./compiler:/app
+    networks:
+      - local
+volumes:
+  sharing:
+networks:
+  local:
+
