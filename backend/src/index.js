@@ -1,13 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
-// const shell = require('shelljs');
 const app = express();
 const path = require('path');
-const fs = require('fs');
-const shell = require('child_process').execSync ;
-
+const fs = require('fs-extra');
 var zipper = require('zip-local');
+
 app.use(cors());
 
 const  upload = multer({storage: multer.diskStorage({
@@ -22,11 +20,22 @@ const  upload = multer({storage: multer.diskStorage({
       files: req.files,
     }
     );
-    // apagando arquivos  com delay de 1 segundo
     try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
         fs.unlinkSync('./compiler/data.csv')
         fs.unlinkSync('./compiler/inputMap.map')
+
+        fs.readdir('./compiler/', (err, files) => {
+
+            files.forEach(file => {
+               if (path.extname(file) === '.gdf' || path.extname(file) === '.net') {
+                fs.move(`./compiler/${file}`, `./download/${file}`, err => {
+                         if (err) throw err;
+                         console.log('Moving ' + file);
+                     });
+               }
+            })
+          })
 
       } catch(err) {
         console.error(err)
@@ -34,13 +43,18 @@ const  upload = multer({storage: multer.diskStorage({
   });
 
 app.get('/download',(req, res, next) => {
-    const src = './compiler';
-    const dist= '../files';
-    // shell(`mv ${src} ${dist}`);
-
-    zipper.sync.zip("./compiler/").compress().save("./compiler/pack.zip");
-    res.download('./compiler/pack.zip');
+    zipper.sync.zip("./download/").compress().save("./download/pack.zip");
+    res.download('./download/pack.zip');
     res.status(200);
+    try {
+        fs.readdir('./download/', (err, files) => {
+            files.forEach(file => {
+                fs.unlinkSync(`./download/${file}`)
+            })
+          })
+      } catch(err) {
+        console.error(err)
+      }
   });
 
 app.get('/', (req, res) =>{
