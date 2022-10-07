@@ -12,8 +12,14 @@ export default function Form () {
         method: 'POST',
         body: dataForm,
       });
+
+      const resp = await fetch(`http://localhost:5001/download`, {
+        method: 'GET',
+      });
+
       const data = await res.json();
       setInterval(console.log(data));
+
     };
     return(
         <div className="form">
