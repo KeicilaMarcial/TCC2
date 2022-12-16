@@ -51,23 +51,45 @@ const Form = ({
       method: 'POST',
       body: dataForm,
     });
-
-    const resp = await fetch(`http://localhost:5001/download`, {
-      method: 'GET',
-    });
-
     const data = await res.json();
     setInterval(console.log(data));
-
   };
+
+  const uploadZip =  async () => {
+    const sleep = (delay) => new Promise(resolve => setTimeout(resolve, delay));
+
+    await sleep(1000);
+    await  fetch(`http://localhost:5001/download`)
+    .then(transfer => transfer.blob())
+    .then(bytes => {
+        let elm = document.createElement('a');
+        elm.href = URL.createObjectURL(bytes);
+        elm.setAttribute('download', `pack.zip`);
+        elm.click()
+        return true;
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
+
+ const handleClick = async() =>{
+    sendFile();
+    uploadZip();
+ }
 
   return (
     <>
       <ButtonGroup>
-      <Button color="primary" wideMobile  onClick={sendFile}>
-        Converter arquivos
-        </Button>
-        <input type="file" style={{display:'none'}}  name="file" id="upload-file" multiple ref={filesElement} />
+      <Button color="primary" wideMobile >
+        <label  class="custom-file-upload">
+            <input type="file" style={{display:'none'}}  name="file" id="upload-file" multiple ref={filesElement} />
+            Upload  de arquivos
+        </label>
+     </Button>
+      <Button color="primary" wideMobile  onClick={handleClick}>
+        converter
+     </Button>
     </ButtonGroup>
     </>
 
