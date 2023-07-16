@@ -58,7 +58,7 @@ const Form = ({
   const uploadZip =  async () => {
     const sleep = (delay) => new Promise(resolve => setTimeout(resolve, delay));
 
-    await sleep(4000);
+    await sleep(2500);
     await  fetch(`http://localhost:5001/download`)
     .then(transfer => transfer.blob())
     .then(bytes => {
