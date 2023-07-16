@@ -1,21 +1,52 @@
-import React, {useState, useEffect } from "react";
-import api from "./services/api";
+import React, { useRef, useEffect } from 'react';
+import { useLocation, Switch } from 'react-router-dom';
+import AppRoute from './utils/AppRoute';
+import ScrollReveal from './utils/ScrollReveal';
+import ReactGA from 'react-ga';
+import FeaturesSplit from './components/sections/FeaturesSplit';
+import FeatureTiles from './components/sections/FeaturesTiles.js'
+import Testimonial from './components/sections/Testimonial';
 
-import './style/App.css'
-import Main from "./components/Main";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
+// Layouts
+import LayoutDefault from './layouts/LayoutDefault';
 
-function App(props){
+// Views 
+import Home from './views/Home';
+
+// Initialize Google Analytics
+ReactGA.initialize(process.env.REACT_APP_GA_CODE);
+
+const trackPage = page => {
+  ReactGA.set({ page });
+  ReactGA.pageview(page);
+};
+
+const App = () => {
+
+  const childRef = useRef();
+  let location = useLocation();
+
+  useEffect(() => {
+    const page = location.pathname;
+    document.body.classList.add('is-loaded')
+    childRef.current.init();
+    trackPage(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
   return (
-    <div className="App">
-        <Main/>
-        <Content/>
-        <Content/>
-        <Content/>
-        <Footer/>
-    </div>
-  )
+    <ScrollReveal
+      ref={childRef}
+      children={() => (
+        <Switch>
+          <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+          <AppRoute path='/quemSomos' exact component={FeatureTiles} />
+          <AppRoute path='/oqueFazemos' exact component={Testimonial} />
+          {/* <AppRoute path='/converter' exact component={FeatureTiles} /> */}
+          <AppRoute path='/contato' exact component={FeaturesSplit} />
+        </Switch>
+      )} />
+  );
 }
 
 export default App;
