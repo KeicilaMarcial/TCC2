@@ -45,7 +45,7 @@ const Testimonial = ({
 
   const sectionHeader = {
     title: 'Como Converter?',
-    paragraph: 'Vitae aliquet nec ullamcorper sit amet risus nullam eget felis semper quis lectus nulla at volutpat diam ut venenatis tellus—in ornare.'
+    paragraph: 'Para converter os arquivos, basta clicar no botão  "Upload de arquivos", após seleciona-los, clique no botão "Converter". Aguarde o download com o resultado da conversão!'
   };
 
   return (
@@ -61,9 +61,19 @@ const Testimonial = ({
             <div className="tiles-item reveal-from-right" data-reveal-delay="200">
               <div className="tiles-item-inner">
                 <div>
-                  <p className="text-sm mb-0">
-                    — Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum cillum dolore eu fugiat.
-                  </p>
+                <p className='ext-sm mb-0'>
+                    Formatos de arquivos de entrada aceitos: CSV e  MAP
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="tiles-item reveal-from-right" data-reveal-delay="200">
+              <div className="tiles-item-inner">
+                <div>
+                <p className="text-sm mb-0">
+                    Arquivos .csv (separados por virgula), são arquivos de texto  regulamentado  pelo RFC 4180, que faz uma ordenação de bytes ou um formato de terminador de linha, separando valores com vírgulas.
+                </p>
                 </div>
               </div>
             </div>
@@ -72,8 +82,8 @@ const Testimonial = ({
               <div className="tiles-item-inner">
                 <div>
                   <p className="text-sm mb-0">
-                    — Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum cillum dolore eu fugiat.
-                      </p>
+                    Arquivos .map  ou  Arquivos de mapa são aquivos que contem dados  e informações gráficas, que exibem  adequadamente  propriedades vetorias em um amplificador.
+                  </p>
                 </div>
               </div>
             </div>

@@ -10,7 +10,7 @@ import Testimonial from './components/sections/Testimonial';
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
 
-// Views 
+// Views
 import Home from './views/Home';
 
 // Initialize Google Analytics
@@ -41,7 +41,7 @@ const App = () => {
         <Switch>
           <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
           <AppRoute path='/quemSomos' exact component={FeatureTiles} />
-          <AppRoute path='/oqueFazemos' exact component={Testimonial} />
+          <AppRoute path='/converter' exact component={Testimonial} />
           {/* <AppRoute path='/converter' exact component={FeatureTiles} /> */}
           <AppRoute path='/contato' exact component={FeaturesSplit} />
         </Switch>

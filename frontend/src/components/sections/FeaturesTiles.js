@@ -45,7 +45,7 @@ const FeaturesTiles = ({
 
   const sectionHeader = {
     title: 'Quem Somos',
-    paragraph: 'Somos um time que nasceu na Universidade Federal do Espirito Santo, com o ojetivo de trazer uma alternativa que possa facilitar a vida dos intusiastas das redes complexas, disponibilizando de forma online um complidador que converte arquivos .csv e .map em arquivos .gdf (classificados como Arquidos de Dados)'
+    paragraph: 'Somos um time que nasceu na Universidade Federal do Espirito Santo (UFES), que em busca de facilitar as análises  nos estudos das redes complexas, disponibilizamos de forma  gratuíta um complidador de mapeamento de redes complexas.'
   };
 
   return (
@@ -61,7 +61,7 @@ const FeaturesTiles = ({
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-content">
                   <h4 className="mt-0 mb-8">
-                    Robust Workflow
+                    Nossas Pesquisas
                     </h4>
                   <p className="m-0 text-sm">
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
@@ -70,12 +70,12 @@ const FeaturesTiles = ({
               </div>
             </div>
 
-          
+
             <div className="tiles-item reveal-from-bottom" data-reveal-delay="200">
               <div className="tiles-item-inner">
                 <div className="features-tiles-item-content">
                   <h4 className="mt-0 mb-8">
-                    Robust Workflow
+                   No que acreditamos
                     </h4>
                   <p className="m-0 text-sm">
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
@@ -90,7 +90,7 @@ const FeaturesTiles = ({
                 </div>
                 <div className="features-tiles-item-content">
                   <h4 className="mt-0 mb-8">
-                    Robust Workflow
+                   Saiba mais
                     </h4>
                   <p className="m-0 text-sm">
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.

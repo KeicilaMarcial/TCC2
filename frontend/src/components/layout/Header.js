@@ -44,7 +44,7 @@ const Header = ({
       document.removeEventListener('click', clickOutside);
       closeMenu();
     };
-  });  
+  });
 
   const openMenu = () => {
     document.body.classList.add('off-nav-is-active');
@@ -66,7 +66,7 @@ const Header = ({
     if (!nav.current) return
     if (!isActive || nav.current.contains(e.target) || e.target === hamburger.current) return;
     closeMenu();
-  }  
+  }
 
   const classes = classNames(
     'site-header',
@@ -115,7 +115,7 @@ const Header = ({
                       <Link to="/quemSomos" onClick={closeMenu}>Quem Somos</Link>
                     </li>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>Como converter seus arquivos</Link>
+                      <Link to="/converter" onClick={closeMenu}>Como converter seus arquivos</Link>
                     </li>
                     <li>
                       <Link to="/contato" onClick={closeMenu}>Contato</Link>
